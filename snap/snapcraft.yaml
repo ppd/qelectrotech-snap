@@ -96,3 +96,5 @@ parts:
       - libqt5xml5
       - libfam0
       - libqt5sql5-sqlite
+      - libdrm2
+
