@@ -1,0 +1,6 @@
+version=4
+opts="uversionmangle=s/_/-/" \
+https://pypi.debian.net/qet-tb-generator/qet_tb_generator-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz))) debian uupdate
+
+
+
