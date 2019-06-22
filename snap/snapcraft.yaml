@@ -39,6 +39,12 @@ apps:
         QT_QPA_PLATFORMTHEME: gtk3
         DISABLE_WAYLAND: 1
 
+  qet-tb-generator:
+    command: desktop-launch $SNAP/bin/qet_tb_generator
+    plugs: *plugs
+    environment: *env
+
+
 parts:
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -65,6 +71,15 @@ parts:
       - xdg-user-dirs
       - fcitx-frontend-qt5
 
+  qet-tb-generator:
+    after: [desktop-qt5]
+    plugin: python
+    python-version: python3
+    stage-packages: 
+      - python3-lxml
+      - python3-tk
+      - libtk8.6
+    source: ./qet-tb-generator
   qelectrotech:
     plugin: qmake
     source: svn://svn.tuxfamily.org/svnroot/qet/qet/trunk
