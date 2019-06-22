@@ -41,6 +41,7 @@ apps:
     environment: &env
         __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
         QT_QPA_PLATFORMTHEME: gtk3
+        QT_AUTO_SCREEN_SCALE_FACTOR: 1
         DISABLE_WAYLAND: 1
         TCL_LIBRARY: $SNAP/usr/share/tcltk/tcl8.6
 
