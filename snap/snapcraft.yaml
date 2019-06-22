@@ -33,11 +33,12 @@ apps:
   qelectrotech:
     command: desktop-launch $SNAP/usr/local/bin/qelectrotech
     desktop: usr/local/share/applications/qelectrotech.desktop
-    plugs: [opengl, x11, unity7, wayland, desktop, home, removable-media, gsettings, network]
-    environment:
+    plugs: &plugs [opengl, x11, unity7, wayland, desktop, desktop-legacy, home, removable-media, gsettings, network]
+    environment: &env
         __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
         QT_QPA_PLATFORMTHEME: gtk3
         DISABLE_WAYLAND: 1
+        TCL_LIBRARY: $SNAP/usr/share/tcltk/tcl8.6
 
   qet-tb-generator:
     command: desktop-launch $SNAP/bin/qet_tb_generator
@@ -97,6 +98,7 @@ parts:
       cp DXFtoQET "$SNAPCRAFT_PART_INSTALL/bin/"
 
   qelectrotech:
+    after: [desktop-qt5]
     plugin: qmake
     source: svn://svn.tuxfamily.org/svnroot/qet/qet/trunk
     override-pull: |
