@@ -32,7 +32,7 @@ plugs:
 apps:
   qelectrotech:
     adapter: full
-    command: $SNAP/usr/local/bin/qelectrotech
+    command: usr/local/bin/qelectrotech
     command-chain:
       - bin/desktop-launch 
       - bin/qelectrotech-launch
