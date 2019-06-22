@@ -44,6 +44,10 @@ apps:
     plugs: *plugs
     environment: *env
 
+  dxf-to-qet:
+    command: desktop-launch $SNAP/bin/DXFtoQET
+    plugs: *plugs
+    environment: *env
 
 parts:
   desktop-qt5:
@@ -80,6 +84,18 @@ parts:
       - python3-tk
       - libtk8.6
     source: ./qet-tb-generator
+
+  dxf-to-qet:
+    after: [desktop-qt5]
+    plugin: qmake
+    source: svn://svn.tuxfamily.org/svnroot/qet/qet/branches/DXFtoQET3_DB
+    build-packages:
+      - qtbase5-dev
+    override-build: |
+      snapcraftctl build
+      mkdir -p "$SNAPCRAFT_PART_INSTALL/bin"
+      cp DXFtoQET "$SNAPCRAFT_PART_INSTALL/bin/"
+
   qelectrotech:
     plugin: qmake
     source: svn://svn.tuxfamily.org/svnroot/qet/qet/trunk
