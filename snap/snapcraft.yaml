@@ -31,7 +31,11 @@ plugs:
 
 apps:
   qelectrotech:
-    command: desktop-launch $SNAP/usr/local/bin/qelectrotech
+    adapter: full
+    command: $SNAP/usr/local/bin/qelectrotech
+    command-chain:
+      - bin/desktop-launch 
+      - bin/qelectrotech-launch
     desktop: usr/local/share/applications/qelectrotech.desktop
     plugs: &plugs [opengl, x11, unity7, wayland, desktop, desktop-legacy, home, removable-media, gsettings, network]
     environment: &env
@@ -51,6 +55,12 @@ apps:
     environment: *env
 
 parts:
+  launchers:
+    plugin: dump
+    source: launchers
+    organize:
+      '*': bin/
+
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
     source-subdir: qt
@@ -72,10 +82,10 @@ parts:
       - libgdk-pixbuf2.0-0
       - libqt5svg5 # for loading icon themes which are svg
       - try: [appmenu-qt5] # not available on core18
-      - locales-all
+      - locales-all 
       - xdg-user-dirs
       - fcitx-frontend-qt5
-
+  
   qet-tb-generator:
     after: [desktop-qt5]
     plugin: python
