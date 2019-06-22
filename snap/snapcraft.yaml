@@ -1,6 +1,5 @@
 name: qelectrotech
 title: QElectroTech
-icon: qelectrotech.png
 base: core18
 adopt-info: qelectrotech
 summary: Electrical diagram editor
