@@ -1,4 +1,6 @@
-# qelectrotech-snap
+# qelectrotech-snap (Obsolete)
+
+**The snap packaging is now included in upstream. This repository serves only an archival purpose.**
 
 QElectroTech snap package
 
